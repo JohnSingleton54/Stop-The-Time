@@ -1,12 +1,22 @@
 import { render } from "react-dom";
-import DailyTimesheet from "./DailyTimesheet";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { StrictMode } from "react";
+import SearchParam from "./SearchParam";
+import Timesheet from "./Timesheet";
 
 const App = () => {
   return (
-    <div>
-      <h1>Stop the time!</h1>
-      <DailyTimesheet />
-    </div>
+    <StrictMode>
+      <BrowserRouter>
+        <header>
+          <Link to="/">Stop The Time!</Link>
+        </header>
+        <Routes>
+          <Route path="/" element={<SearchParam />} />
+          <Route path="/timesheet:id" element={<Timesheet />} />
+        </Routes>
+      </BrowserRouter>
+    </StrictMode>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const SUBJECTS = [
   "Linear Algebra",
@@ -12,18 +12,6 @@ const SUBJECTS = [
 const DailyTimesheet = () => {
   const [startTime, setStartTime] = useState("");
   const [subject, setSubject] = useState("");
-  const [trivia, setTrivia] = useState("");
-
-  useEffect(() => {
-    requestTrivia();
-  }, []); // Try `[subject]`.
-
-  async function requestTrivia() {
-    const res = await fetch(`http://numbersapi.com/random?json`);
-    const json = await res.json();
-
-    await setTrivia(json.text);
-  }
 
   return (
     <div className="daily-timesheet">
@@ -59,7 +47,6 @@ const DailyTimesheet = () => {
         </label>
         <button>Submit</button>
       </form>
-      {trivia}
     </div>
   );
 };
