@@ -10,8 +10,11 @@ const SUBJECTS = [
   "Web Development",
 ];
 
+//const LOCATIONS = ["Bozeman, MT", "Las Vegas, MT"];
+
 const SearchParam = () => {
   const [subject, setSubject] = useState("");
+  const [location, setLocation] = useState("");
   const [times, setTimes] = useState([]);
 
   useEffect(() => {
@@ -36,9 +39,19 @@ const SearchParam = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          //setSubject(e.target.value);
           requestTimes();
         }}
       >
+        <label htmlFor="location">
+          Location
+          <input
+            id="location"
+            value={location}
+            placeholder="Location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </label>
         <label htmlFor="subject">
           Subject
           <select
@@ -61,9 +74,11 @@ const SearchParam = () => {
         </label>
         <button>Submit</button>
       </form>
-      <Results times={times} subject={subject} />
+      {subject ? <Results times={times} /> : <div></div>}
     </div>
   );
 };
 
 export default SearchParam;
+
+// {subject ? <Results times={times} subject={subject} /> : <div></div>}
